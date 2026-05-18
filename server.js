@@ -51,7 +51,31 @@ res.status(500).json({
 
 }
 });
+app.get("/", (req, res) => {
+  res.send("Server running successfully");
+});
 
+app.post("/generate", async (req, res) => {
+
+  try {
+
+    const { business } = req.body;
+
+    res.json({
+      success: true,
+      message: `AI response for ${business}`
+    });
+
+  } catch (error) {
+
+    res.status(500).json({
+      success: false,
+      error: error.message
+    });
+
+  }
+
+});
 app.listen(3000, () => {
 console.log("Server running on port 3000");
 });
